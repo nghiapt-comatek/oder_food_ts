@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import {TailwindProvider} from 'tailwind-rn';
 import AppSecond from './AppSecond';
+import RootNavigator from './navigator/RootNavigator';
 import CustomersScreen from './screens/CustomersScreen';
 import utilities from './tailwind.json';
 
@@ -19,12 +20,12 @@ const App = () => {
     // @ts-ignore - TailwindProvider is missing a type definition
     <TailwindProvider utilities={utilities}>
       <NavigationContainer>
-        <CustomersScreen />
+        <RootNavigator />
       </NavigationContainer>
     </TailwindProvider>
   );
 };
 
-const styles = StyleSheet.create({});
+
 
 export default App;
