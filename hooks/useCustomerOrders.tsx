@@ -1,31 +1,29 @@
 import {useQuery} from '@apollo/client';
 import React, {useEffect, useState} from 'react';
 import {GET_ORDERS} from '../graphql/queries';
+import {dataOrder} from '../assets/dataOrder';
+import {DangerousChangeType} from 'graphql';
 
 function useCustomerOrders(userId: string) {
   const {loading, error, data} = useQuery(GET_ORDERS);
-  console.log(data);
+
   const [orders, setOrders] = useState<Order[]>([]);
 
-  useEffect(() => {
-    if (!data) return;
+  const datas = dataOrder.getOrders;
 
-    const orders: Order[] = data.getOrders.map(({value}: OrderResponse) => ({
-      carrier: value.carrier,
-      createdAt: value.createdAt,
-      trackingId: value.trackingId,
-      shippingCost: value.shippingCost,
-      Address: value.Address,
-      City: value.City,
-      Lng: value.Lng,
-      Lat: value.Lat,
-    }));
+  useEffect(() => {
+    if (!dataOrder) return;
+
+    const orders = datas.map(function (item) {
+      return item;
+    });
+
     const customerOrders = orders.filter(
       order => order.trackingItems.customer_id === userId,
     );
     setOrders(customerOrders);
   }, [data, userId]);
-
+  console.log(orders);
   return {loading, error, orders};
 }
 

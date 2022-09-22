@@ -38,6 +38,10 @@
   width: 100%
 }
 
+.rounded-lg {
+  border-radius: 0.5rem
+}
+
 .border {
   border-width: 1px
 }
@@ -47,19 +51,13 @@
   background-color: rgb(255 255 255 / var(--tw-bg-opacity))
 }
 
+.p-5 {
+  padding: 1.25rem
+}
+
 .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem
-}
-
-.px-5 {
-  padding-left: 1.25rem;
-  padding-right: 1.25rem
-}
-
-.px-20 {
-  padding-left: 5rem;
-  padding-right: 5rem
 }
 
 .pt-5 {
