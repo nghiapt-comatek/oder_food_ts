@@ -4,6 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import CustomersScreen from '../screens/CustomersScreen';
 import OrdersScreen from '../screens/OrdersScreen';
 import {useNavigation} from '@react-navigation/native';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 export type TabStackParamList = {
   Customers: undefined;
@@ -22,17 +23,32 @@ const TabNavigator = () => {
   }, []);
 
   return (
-    <Tab.Navigator>
-      <Tab.Screen
-        name="Customers"
-        component={CustomersScreen}
-        options={{headerShown: false}}
-      />
-      <Tab.Screen
-        name="Orders"
-        component={OrdersScreen}
-        options={{headerShown: false}}
-      />
+    <Tab.Navigator
+      screenOptions={({route}) => ({
+        tabBarActiveTintColor: '#59c1cc',
+        tabBarInactiveTintColor: 'gray',
+        tabBarIcon: ({focused, color, size}) => {
+          if (route.name === 'Customers') {
+            return (
+              <Entypo
+                name="users"
+                color={focused ? '#59c1cc' : 'gray'}
+                size={25}
+              />
+            );
+          } else if (route.name === 'Orders') {
+            return (
+              <Entypo
+                name="box"
+                color={focused ? '#eb6a7c' : 'gray'}
+                size={25}
+              />
+            );
+          }
+        },
+      })}>
+      <Tab.Screen name="Customers" component={CustomersScreen} />
+      <Tab.Screen name="Orders" component={OrdersScreen} />
     </Tab.Navigator>
   );
 };
