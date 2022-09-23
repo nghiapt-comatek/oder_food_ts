@@ -4,7 +4,8 @@ import useCustomerOrders from '../hooks/useCustomerOrders';
 import {useTailwind} from 'tailwind-rn/dist';
 import {useNavigation} from '@react-navigation/native';
 import {CustomerScreenNavigationProp} from '../screens/CustomersScreen';
-import { Card } from '@rneui/themed';
+import {Card} from '@rneui/themed';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 type Props = {
   email: string;
@@ -19,19 +20,36 @@ const CustomerCard = ({email, name, userId}: Props) => {
   const navigation = useNavigation<CustomerScreenNavigationProp>();
 
   return (
-    <TouchableOpacity>
-      <Card containerStyle={tw("p-5 rounded-lg")}>
+    <Card containerStyle={tw('p-5 rounded-lg')}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('MyModal', {userId: userId, name: name})
+        }>
         <View>
+          <View style={tw('flex-row  justify-between')}>
             <View>
-              <Text>{name}</Text>
-              <Text>ID: {userId}</Text>
+              <Text style={tw('text-2xl font-bold')}>{name}</Text>
+              <Text style={[tw('text-sm'), {color: '#59c1cc'}]}>
+                ID: {userId}
+              </Text>
             </View>
-            <View>
-              <Text>{loading ? "loading..." : `${orders.length} x`}</Text>
+            <View style={tw('flex-row items-center justify-end')}>
+              <Text style={{color: '#59c1cc'}}>
+                {loading ? 'loading...' : `${orders.length} x`}
+              </Text>
+              <Entypo
+                name="box"
+                size={50}
+                style={tw('mb-5 ml-auto')}
+                color="#59c1cc"
+              />
             </View>
+          </View>
         </View>
-      </Card>
-    </TouchableOpacity>
+        <Card.Divider />
+        <Text>{email}</Text>
+      </TouchableOpacity>
+    </Card>
   );
 };
 

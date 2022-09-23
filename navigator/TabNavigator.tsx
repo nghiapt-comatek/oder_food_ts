@@ -27,6 +27,7 @@ const TabNavigator = () => {
       screenOptions={({route}) => ({
         tabBarActiveTintColor: '#59c1cc',
         tabBarInactiveTintColor: 'gray',
+
         tabBarIcon: ({focused, color, size}) => {
           if (route.name === 'Customers') {
             return (

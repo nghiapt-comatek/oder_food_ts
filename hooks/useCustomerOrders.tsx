@@ -2,7 +2,6 @@ import {useQuery} from '@apollo/client';
 import React, {useEffect, useState} from 'react';
 import {GET_ORDERS} from '../graphql/queries';
 import {dataOrder} from '../assets/dataOrder';
-import {DangerousChangeType} from 'graphql';
 
 function useCustomerOrders(userId: string) {
   const {loading, error, data} = useQuery(GET_ORDERS);
@@ -23,7 +22,7 @@ function useCustomerOrders(userId: string) {
     );
     setOrders(customerOrders);
   }, [data, userId]);
-  console.log(orders);
+
   return {loading, error, orders};
 }
 
